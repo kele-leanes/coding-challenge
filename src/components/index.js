@@ -1,4 +1,5 @@
 import Card from './Card';
-import Raiting from './Raiting';
+import Rating from './Rating';
+import Detail from './Detail';
 
-export {Card, Raiting};
+export {Card, Rating, Detail};

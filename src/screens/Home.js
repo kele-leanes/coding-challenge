@@ -11,7 +11,7 @@ import {Card} from '../components';
 import {Theme} from '../constants';
 import {getMovies} from '../store/actions/moviesActions';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const dispatch = useDispatch();
   const movies = useSelector((store) => store.movies.movies?.results);
 
@@ -20,22 +20,7 @@ const Home = () => {
   }, []);
 
   const RenderItem = ({item}) => {
-    const {
-      original_title,
-      overview,
-      poster_path,
-      release_date,
-      vote_average,
-    } = item;
-    return (
-      <Card
-        title={original_title}
-        overview={overview}
-        poster={poster_path}
-        releaseDate={release_date}
-        votes={vote_average}
-      />
-    );
+    return <Card movieInfo={item} navigation={navigation} />;
   };
 
   return (
