@@ -7,12 +7,24 @@ import {Home} from '../screens';
 
 const MoviesStack = createStackNavigator();
 
+const screens = [
+  {
+    name: 'Home',
+    component: Home,
+  },
+];
+
 export default function Navigation() {
   return (
     <Provider store={store}>
       <NavigationContainer>
         <MoviesStack.Navigator>
-          <MoviesStack.Screen name="Home" component={Home} />
+          {screens.map((screen) => (
+            <MoviesStack.Screen
+              name={screen.name}
+              component={screen.component}
+            />
+          ))}
         </MoviesStack.Navigator>
       </NavigationContainer>
     </Provider>
