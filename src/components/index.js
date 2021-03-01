@@ -1,4 +1,8 @@
 import Card from './Card';
-import Raiting from './Raiting';
+import Rating from './Rating';
+import Detail from './Detail';
+import PresseableIcon from './PresseableIcon';
+import Input from './Input';
+import Item from './Item';
 
-export {Card, Raiting};
+export {Card, Rating, Detail, PresseableIcon, Input, Item};

@@ -1,26 +1,26 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Theme} from '../constants';
 
 const Rating = ({votes}) => {
-  const getRaiting = (raitng) => {
-    const elemArrey = [];
-    const raitingToFive = (raitng / 2).toFixed(0);
+  const getRating = (raitng) => {
+    const elemArray = [];
+    const RatingToFive = (raitng / 2).toFixed(0);
     for (let i = 0; i < 5; i++) {
-      if (i < raitingToFive) {
-        elemArrey.push(
+      if (i < RatingToFive) {
+        elemArray.push(
           <Icon name="star" size={20} color={Theme.COLORS.TERTIARY} />,
         );
       } else {
-        elemArrey.push(
+        elemArray.push(
           <Icon name="star-o" size={20} color={Theme.COLORS.TERTIARY} />,
         );
       }
     }
-    return elemArrey;
+    return elemArray;
   };
-  return <View style={style.container}>{getRaiting(votes)}</View>;
+  return <View style={style.container}>{getRating(votes)}</View>;
 };
 
 const style = StyleSheet.create({

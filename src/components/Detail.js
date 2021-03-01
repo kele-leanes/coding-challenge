@@ -1,44 +1,40 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Rating} from '.';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import {Theme} from '../constants';
+import {Rating} from '../components';
 
-const Card = ({movieInfo, navigation}) => {
+const Detail = ({movieInfo}) => {
   const {
     title,
-    overview,
     poster_path: poster,
+    overview,
     release_date: releaseDate,
     vote_average: votes,
+    popularity,
   } = movieInfo;
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate('Details', {movieInfo})}>
-      <View style={styles.container}>
-        <View>
-          <Image
-            style={styles.image}
-            resizeMode={'cover'}
-            source={{uri: 'https://image.tmdb.org/t/p/w780' + poster}}
-          />
-          <Text style={styles.title}>{title}</Text>
-        </View>
+    <View style={styles.container}>
+      <View>
+        <Image
+          style={styles.image}
+          resizeMode={'cover'}
+          source={{uri: 'https://image.tmdb.org/t/p/w780' + poster}}
+        />
+        <Text style={styles.title}>{title}</Text>
+      </View>
 
-        <View style={styles.textContainer}>
-          <Text
-            numberOfLines={2}
-            ellipsizeMode={'tail'}
-            style={styles.description}>
-            {overview}
-          </Text>
-        </View>
-        <View style={styles.footer}>
+      <View style={styles.textContainer}>
+        <Text style={styles.description}>{overview}</Text>
+      </View>
+      <View style={styles.footer}>
+        <View style={{flexDirection: 'row'}}>
           <Text style={styles.text}>Rating: </Text>
           <Rating votes={votes} />
-          <Text style={styles.text}>Release Date: {releaseDate}</Text>
         </View>
+        <Text style={styles.text}>Release Date: {releaseDate}</Text>
+        <Text style={styles.text}>Popularity: {popularity}</Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
@@ -46,11 +42,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Theme.COLORS.PRIMARY,
     flex: 1,
-    borderWidth: 1,
     borderColor: Theme.COLORS.PRIMARY,
     padding: 10,
-    marginVertical: 5,
-    marginHorizontal: 10,
   },
   title: {
     color: Theme.COLORS.WHITE,
@@ -72,17 +65,16 @@ const styles = StyleSheet.create({
   },
   image: {
     width: undefined,
-    height: 100,
+    height: 500,
   },
   textContainer: {
     marginVertical: 10,
   },
   footer: {
-    flexDirection: 'row',
+    height: 100,
     justifyContent: 'space-between',
-    alignItems: 'center',
     marginVertical: 10,
   },
 });
 
-export default Card;
+export default Detail;
