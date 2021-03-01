@@ -34,7 +34,7 @@ const Card = ({movieInfo, navigation}) => {
         </View>
         <View style={styles.footer}>
           <Text style={styles.text}>Rating: </Text>
-          <Rating votes={votes} />
+          <Rating votes={Math.round(votes / 2) - 1} />
           <Text style={styles.text}>Release Date: {releaseDate}</Text>
         </View>
       </View>

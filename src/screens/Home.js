@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useMemo, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -7,7 +7,7 @@ import {
   Text,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {Card, Input, PresseableIcon} from '../components';
+import {Card, Input, PresseableIcon, Filter} from '../components';
 import {Theme} from '../constants';
 import {getMovies, getMoviesByName} from '../store/actions/moviesActions';
 
@@ -17,6 +17,27 @@ const Home = ({navigation}) => {
   const isLoading = useSelector((store) => store.movies.loading);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [value, onChangeText] = useState('');
+  const [filter, onChangeFilter] = useState(null);
+
+  const _onChangefilter = (val) => {
+    onChangeFilter(val === filter ? null : val);
+  };
+
+  const filterByRating = (rating) => {
+    let filteredMovies;
+    if (rating !== null) {
+      filteredMovies = movies?.filter(
+        (movie) =>
+          movie.vote_average < (rating + 1) * 2 &&
+          movie.vote_average >= (rating + 1) * 2 - 1,
+      );
+    } else {
+      filteredMovies = movies;
+    }
+    return filteredMovies;
+  };
+
+  const moviestoShow = useMemo(() => filterByRating(filter), [filter, value, movies]);
 
   useEffect(() => {
     if (value.length) {
@@ -53,9 +74,9 @@ const Home = ({navigation}) => {
         />
       )}
       {!isLoading ? (
-        movies.length > 0 ? (
+        moviestoShow.length > 0 ? (
           <FlatList
-            data={movies}
+            data={moviestoShow}
             keyExtractor={(item) => item.id.toString()}
             style={{flex: 1}}
             renderItem={RenderItem}
@@ -66,6 +87,7 @@ const Home = ({navigation}) => {
       ) : (
         <ActivityIndicator size={20} color={Theme.COLORS.WHITE} />
       )}
+      <Filter value={filter} onValueChange={_onChangefilter} />
     </SafeAreaView>
   );
 };

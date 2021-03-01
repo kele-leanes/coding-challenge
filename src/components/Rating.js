@@ -1,20 +1,30 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Theme} from '../constants';
 
-const Rating = ({votes}) => {
+const Rating = ({votes, onPress}) => {
   const getRating = (raitng) => {
     const elemArray = [];
-    const RatingToFive = (raitng / 2).toFixed(0);
+    const RatingToFive = raitng;
     for (let i = 0; i < 5; i++) {
-      if (i < RatingToFive) {
+      if (i <= RatingToFive) {
         elemArray.push(
-          <Icon name="star" size={20} color={Theme.COLORS.TERTIARY} />,
+          <TouchableOpacity
+            activeOpacity={onPress ? 0.2 : 1}
+            onPress={onPress ? () => onPress(i) : null}
+            key={i.toString()}>
+            <Icon name="star" size={20} color={Theme.COLORS.TERTIARY} />
+          </TouchableOpacity>,
         );
       } else {
         elemArray.push(
-          <Icon name="star-o" size={20} color={Theme.COLORS.TERTIARY} />,
+          <TouchableOpacity
+            activeOpacity={onPress ? 0.2 : 1}
+            onPress={onPress ? () => onPress(i) : null}
+            key={i.toString()}>
+            <Icon name="star-o" size={20} color={Theme.COLORS.TERTIARY} />
+          </TouchableOpacity>,
         );
       }
     }
@@ -25,7 +35,6 @@ const Rating = ({votes}) => {
 
 const style = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
   },
 });
