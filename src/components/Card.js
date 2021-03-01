@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Theme.COLORS.PRIMARY,
     padding: 10,
-    marginBottom: 10,
+    marginVertical: 5,
     marginHorizontal: 10,
   },
   title: {

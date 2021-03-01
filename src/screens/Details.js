@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView} from 'react-native';
 import {Theme} from '../constants';
 import {Detail} from '../components';
 

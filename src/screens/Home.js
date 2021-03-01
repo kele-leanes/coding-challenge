@@ -1,19 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
   SafeAreaView,
   StyleSheet,
   Text,
+  TextInput,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {Card} from '../components';
+import {Card, Input, PresseableIcon} from '../components';
 import {Theme} from '../constants';
 import {getMovies} from '../store/actions/moviesActions';
 
 const Home = ({navigation}) => {
   const dispatch = useDispatch();
   const movies = useSelector((store) => store.movies.movies?.results);
+  const isLoading = useSelector((store) => store.movies.loading);
 
   useEffect(() => {
     dispatch(getMovies());
@@ -25,7 +27,7 @@ const Home = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {movies ? (
+      {!isLoading ? (
         movies.length > 0 ? (
           <FlatList
             data={movies}
@@ -47,6 +49,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Theme.COLORS.BACKGROUND,
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
