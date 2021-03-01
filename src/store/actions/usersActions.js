@@ -6,9 +6,7 @@ import {
 } from '../types';
 import services from '../../services';
 
-export const addUserAction = (email, password, name, error) => async (
-  dispatch,
-) => {
+export const addUserAction = (email, password) => async (dispatch) => {
   try {
     const addUser = await services.auth.createUserWithEmailAndPassword(
       email,

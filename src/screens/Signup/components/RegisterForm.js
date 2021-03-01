@@ -1,10 +1,9 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
-import {validateEmail} from '../../../utils/validations';
 
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
@@ -26,32 +25,33 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(true);
   const [repeatPass, setRepeatPass] = useState('');
 
-  const validation = () => {
-    if (!name || !email || !password || !confirmPss) {
-      setError('All fields are required');
-      return;
-    }
-    if (!validateEmail(email)) {
-      setError('Enter a valid e-mail');
-      return;
-    }
-    if (password.length < 6) {
-      setError('The password must be greater than six digits');
-      return;
-    }
-    if (password !== confirmPss) {
-      setError('Passwords must be the same ');
-      return;
-    } else {
-      setError('Form Ok :-) !!');
-      setName('');
-      setEmail('');
-      setPassword('');
-      setConfirmPss('');
-      setError(null);
-      return;
-    }
-  };
+  //TODO: move validation to redux before the navigate
+  // const validation = () => {
+  //   if (!name || !email || !password || !confirmPss) {
+  //     setError('All fields are required');
+  //     return;
+  //   }
+  //   if (!validateEmail(email)) {
+  //     setError('Enter a valid e-mail');
+  //     return;
+  //   }
+  //   if (password.length < 6) {
+  //     setError('The password must be greater than six digits');
+  //     return;
+  //   }
+  //   if (password !== confirmPss) {
+  //     setError('Passwords must be the same ');
+  //     return;
+  //   } else {
+  //     setError('Form Ok :-) !!');
+  //     setName('');
+  //     setEmail('');
+  //     setPassword('');
+  //     setConfirmPss('');
+  //     setError(null);
+  //     return;
+  //   }
+  // };
 
   return (
     <Form
@@ -80,7 +80,7 @@ const RegisterForm = () => {
               />
               <Feather name="check-circle" color="#222831" size={20} />
             </View>
-            <Text style={[styles.text_footer, {marginTop: 35}]}>E-Mail</Text>
+            <Text style={styles.text_footer}>E-Mail</Text>
             <View style={styles.action}>
               <FontAwesome name="user-o" color="#222831" size={20} />
               <Field
@@ -94,7 +94,7 @@ const RegisterForm = () => {
               />
               <Feather name="check-circle" color="#222831" size={20} />
             </View>
-            <Text style={[styles.text_footer, {marginTop: 35}]}>Password</Text>
+            <Text style={styles.text_footer}>Password</Text>
             <View style={styles.action}>
               <FontAwesome name="lock" color="#222831" size={20} />
               <Field
@@ -141,9 +141,7 @@ const RegisterForm = () => {
               <TouchableOpacity
                 onPress={handleSubmit}
                 style={[styles.signIn, styles.btn]}>
-                <Text style={[styles.textSignIn, {color: 'black'}]}>
-                  Sign up
-                </Text>
+                <Text style={styles.textSignIn}>Register</Text>
               </TouchableOpacity>
             </View>
             <View>
@@ -151,7 +149,7 @@ const RegisterForm = () => {
                 name="arrow-left"
                 color="#222831"
                 size={20}
-                style={{marginTop: 40}}
+                style={styles.icon}
                 onPress={() => navigation.navigate('Login')}
               />
               <Text style={styles.backBtn}>Back</Text>

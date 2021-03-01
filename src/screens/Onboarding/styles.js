@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
     backgroundColor: Theme.COLORS.BACKGROUND,
   },
   textSignIn: {
-    color: 'black',
+    color: Theme.COLORS.PRIMARY,
   },
   textSignup: {
     marginTop: 10,

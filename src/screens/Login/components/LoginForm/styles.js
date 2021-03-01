@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
     marginTop: 15,
   },
   textBtn: {
-    color: 'black',
+    color: Theme.COLORS.PRIMARY,
   },
   textBtnF: {
     color: 'white',
