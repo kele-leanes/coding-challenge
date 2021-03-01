@@ -1,29 +1,21 @@
-<<<<<<< HEAD:src/screens/Home/index.js
-import React, {useEffect, useLayoutEffect, useState} from 'react';
-import {ActivityIndicator, FlatList, SafeAreaView, Text} from 'react-native';
-
-import {useDispatch, useSelector} from 'react-redux';
-
-import Card from '../../components/Card';
-import Input from '../../components/Input';
-import PresseableIcon from '../../components/PresseableIcon';
-import {Theme} from '../../constants';
-import {getMovies, getMoviesByName} from '../../store/actions/moviesActions';
-import {styles} from './styles';
-=======
 import React, {useEffect, useLayoutEffect, useMemo, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
   SafeAreaView,
-  StyleSheet,
   Text,
+  View,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {Card, Input, PresseableIcon, Filter} from '../components';
-import {Theme} from '../constants';
-import {getMovies, getMoviesByName} from '../store/actions/moviesActions';
->>>>>>> 5ba7651a2c444449539aba844a98eff826f808fa:src/screens/Home.js
+
+import Card from '../../components/Card';
+import Input from '../../components/Input';
+import PresseableIcon from '../../components/PresseableIcon';
+import Filter from '../../components/Filter';
+import {Theme} from '../../constants';
+import {getMovies, getMoviesByName} from '../../store/actions/moviesActions';
+
+import {styles} from './styles';
 
 const Home = ({navigation}) => {
   const dispatch = useDispatch();
@@ -51,7 +43,11 @@ const Home = ({navigation}) => {
     return filteredMovies;
   };
 
-  const moviestoShow = useMemo(() => filterByRating(filter), [filter, value, movies]);
+  const moviestoShow = useMemo(() => filterByRating(filter), [
+    filter,
+    value,
+    movies,
+  ]);
 
   useEffect(() => {
     if (value.length) {
@@ -101,7 +97,9 @@ const Home = ({navigation}) => {
       ) : (
         <ActivityIndicator size={20} color={Theme.COLORS.WHITE} />
       )}
-      <Filter value={filter} onValueChange={_onChangefilter} />
+      <View style={styles.containerFilter}>
+        <Filter value={filter} onValueChange={_onChangefilter} />
+      </View>
     </SafeAreaView>
   );
 };

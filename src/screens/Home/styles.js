@@ -16,4 +16,11 @@ export const styles = StyleSheet.create({
   flatlist: {
     flex: 1,
   },
+  containerFilter: {
+    alignItems: 'center',
+    paddingHorizontal: 40,
+    position: 'absolute',
+    marginTop: 700,
+    width: '80%',
+  },
 });

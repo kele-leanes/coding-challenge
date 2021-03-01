@@ -91,13 +91,6 @@ const LoginForm = () => {
                 style={[styles.signIn, styles.btn]}>
                 <Text style={[styles.textSignIn, styles.textBtn]}>Sign up</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => console.log('Facebook')}
-                style={[styles.signIn, styles.btnFacebook]}>
-                <Text style={[styles.textSignIn, styles.textBtnF]}>
-                  Sign up with <Text style={styles.facebook}>Facebook</Text>
-                </Text>
-              </TouchableOpacity>
             </View>
             {error && (
               <View style={styles.error}>

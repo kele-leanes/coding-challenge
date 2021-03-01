@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {Theme} from '../../constants';
@@ -35,13 +35,4 @@ const Rating = ({votes, onPress}) => {
   return <View style={styles.container}>{getRating(votes)}</View>;
 };
 
-<<<<<<< HEAD:src/components/Rating/index.js
-=======
-const style = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-  },
-});
-
->>>>>>> 5ba7651a2c444449539aba844a98eff826f808fa:src/components/Rating.js
 export default Rating;

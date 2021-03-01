@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 50,
   },
   footer: {
-    flex: 3,
+    flex: 1,
     backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -40,7 +40,6 @@ export const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    marginTop: 50,
   },
   signIn: {
     width: '95%',
