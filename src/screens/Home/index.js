@@ -1,15 +1,14 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react';
-import {
-  ActivityIndicator,
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import {ActivityIndicator, FlatList, SafeAreaView, Text} from 'react-native';
+
 import {useDispatch, useSelector} from 'react-redux';
-import {Card, Input, PresseableIcon} from '../components';
-import {Theme} from '../constants';
-import {getMovies, getMoviesByName} from '../store/actions/moviesActions';
+
+import Card from '../../components/Card';
+import Input from '../../components/Input';
+import PresseableIcon from '../../components/PresseableIcon';
+import {Theme} from '../../constants';
+import {getMovies, getMoviesByName} from '../../store/actions/moviesActions';
+import {styles} from './styles';
 
 const Home = ({navigation}) => {
   const dispatch = useDispatch();
@@ -57,7 +56,7 @@ const Home = ({navigation}) => {
           <FlatList
             data={movies}
             keyExtractor={(item) => item.id.toString()}
-            style={{flex: 1}}
+            style={styles.flatList}
             renderItem={RenderItem}
           />
         ) : (
@@ -69,19 +68,5 @@ const Home = ({navigation}) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: Theme.COLORS.BACKGROUND,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  alert: {
-    fontSize: 20,
-    color: Theme.COLORS.WHITE,
-    paddingVertical: 20,
-  },
-});
 
 export default Home;

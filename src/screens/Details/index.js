@@ -1,7 +1,9 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, ScrollView} from 'react-native';
-import {Theme} from '../constants';
-import {Detail} from '../components';
+import {SafeAreaView, ScrollView} from 'react-native';
+
+import {Detail} from '../../components';
+
+import {styles} from './styles';
 
 const Details = ({route}) => {
   const {movieInfo} = route.params;
@@ -13,12 +15,5 @@ const Details = ({route}) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: Theme.COLORS.PRIMARY,
-    flex: 1,
-  },
-});
 
 export default Details;
