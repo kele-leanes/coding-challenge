@@ -34,6 +34,8 @@ const screens = [
     component: Home,
     options: ({navigation}) => ({
       title: 'Movie Discover',
+      gestureEnabled: false,
+      headerLeft: null,
       headerRight: () => (
         <PresseableIcon
           name={'search'}
@@ -68,14 +70,23 @@ const screens = [
   {
     name: 'Onboarding',
     component: Onboarding,
+    options: {
+      headerShown: false,
+    },
   },
   {
     name: 'Login',
     component: Login,
+    options: {
+      headerShown: false,
+    },
   },
   {
     name: 'Signup',
     component: Signup,
+    options: {
+      headerShown: false,
+    },
   },
 ];
 
@@ -83,11 +94,7 @@ export default function Navigation() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <MoviesStack.Navigator
-          initialRouteName="Onboarding"
-          screenOptions={{
-            headerShown: false,
-          }}>
+        <MoviesStack.Navigator initialRouteName="Onboarding">
           {screens.map((screen) => (
             <MoviesStack.Screen
               key={screen.name}
