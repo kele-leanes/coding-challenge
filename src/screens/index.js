@@ -1,4 +1,4 @@
-import Home from './Home.js';
+import Home from './Home';
 import Details from './Details';
 import Onboarding from './Onboarding';
 import Login from './Login';

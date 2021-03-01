@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
-import {Theme} from '../constants';
-import {Rating} from '../components';
+import {View, Text, Image} from 'react-native';
+
+import Rating from '../Rating';
+import {styles} from './styles';
 
 const Detail = ({movieInfo}) => {
   const {
@@ -29,7 +30,7 @@ const Detail = ({movieInfo}) => {
       <View style={styles.footer}>
         <View style={{flexDirection: 'row'}}>
           <Text style={styles.text}>Rating: </Text>
-          <Rating votes={votes} />
+          <Rating votes={Math.round(votes / 2) - 1} />
         </View>
         <Text style={styles.text}>Release Date: {releaseDate}</Text>
         <Text style={styles.text}>Popularity: {popularity}</Text>
@@ -37,44 +38,5 @@ const Detail = ({movieInfo}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: Theme.COLORS.PRIMARY,
-    flex: 1,
-    borderColor: Theme.COLORS.PRIMARY,
-    padding: 10,
-  },
-  title: {
-    color: Theme.COLORS.WHITE,
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 10,
-    position: 'absolute',
-    bottom: 10,
-    left: 5,
-  },
-  description: {
-    color: Theme.COLORS.WHITE,
-    fontStyle: 'italic',
-  },
-  text: {
-    color: Theme.COLORS.WHITE,
-  },
-  image: {
-    width: undefined,
-    height: 500,
-  },
-  textContainer: {
-    marginVertical: 10,
-  },
-  footer: {
-    height: 100,
-    justifyContent: 'space-between',
-    marginVertical: 10,
-  },
-});
 
 export default Detail;

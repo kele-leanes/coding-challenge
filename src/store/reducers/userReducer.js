@@ -12,21 +12,27 @@ const initialState = {
   error: '',
 };
 
-export const userReducer = (state = initialState, action) => {
+export default function (state = initialState, action) {
   switch (action.type) {
     case REGISTER_FAILURE: {
       return {...initialState};
     }
     case REGISTER_SUCCESS: {
-      return {...state};
+      return {
+        ...state,
+        user: action.payload,
+      };
     }
     case LOGIN_FAILURE: {
       return {initialState};
     }
     case LOGIN_SUCCES: {
-      return {...state};
+      return {
+        ...state,
+        user: action.payload,
+      };
     }
     default:
       return {...state};
   }
-};
+}

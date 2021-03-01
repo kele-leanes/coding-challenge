@@ -20,27 +20,14 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-
   const [showPassword, setShowPassword] = useState(true);
 
-  const validation = () => {
-    if (!email || !password) {
-      setError('All fields are required');
-    }
-  };
-
-  // const login = useCallback(async () => {
-  //   try {
-  //     const res = await firebase
-  //       .auth()
-  //       .signInWithEmailAndPassword(email, password);
-  //     console.log(res.user);
-  //     navigation.navigate('Home');
-  //   } catch (error) {
-  //     console.log(error);
-  //     setError('Something goes wrong :(');
+  //TODO: move the validation to redux before the navigate
+  // const validation = () => {
+  //   if (!email || !password) {
+  //     setError('All fields are required');
   //   }
-  // }, [email, navigation, password]);
+  // };
 
   return (
     <Form
@@ -104,15 +91,7 @@ const LoginForm = () => {
                 style={[styles.signIn, styles.btn]}>
                 <Text style={[styles.textSignIn, styles.textBtn]}>Sign up</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => console.log('Facebook')}
-                style={[styles.signIn, styles.btnFacebook]}>
-                <Text style={[styles.textSignIn, styles.textBtnF]}>
-                  Sign up with <Text style={styles.facebook}>Facebook</Text>
-                </Text>
-              </TouchableOpacity>
             </View>
-            {/* <Loading isVisible={isVisibleLoading} text="Iniciando Sesión" /> */}
             {error && (
               <View style={styles.error}>
                 <Text style={styles.textError}>{error}</Text>

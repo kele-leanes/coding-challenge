@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   View,
@@ -16,7 +16,6 @@ import Movies from '../../../assets/Login/01.png';
 
 const Onboarding = () => {
   const navigation = useNavigation();
-  const [user, setUser] = useState(null);
 
   return (
     <SafeAreaView style={styles.container}>

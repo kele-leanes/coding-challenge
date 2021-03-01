@@ -24,6 +24,7 @@ export const styles = StyleSheet.create({
   text_footer: {
     color: '#05375a',
     fontSize: 18,
+    marginTop: 35,
   },
   action: {
     flexDirection: 'row',
@@ -50,6 +51,7 @@ export const styles = StyleSheet.create({
   },
   textSignIn: {
     fontSize: 15,
+    color: Theme.COLORS.PRIMARY,
   },
   pss: {
     marginTop: 35,
@@ -74,5 +76,8 @@ export const styles = StyleSheet.create({
   },
   backBtn: {
     color: '#c2c2c2',
+  },
+  icon: {
+    marginTop: 40,
   },
 });
