@@ -30,7 +30,7 @@ const Detail = ({movieInfo}) => {
       <View style={styles.footer}>
         <View style={{flexDirection: 'row'}}>
           <Text style={styles.text}>Rating: </Text>
-          <Rating votes={votes} />
+          <Rating votes={Math.round(votes / 2) - 1} />
         </View>
         <Text style={styles.text}>Release Date: {releaseDate}</Text>
         <Text style={styles.text}>Popularity: {popularity}</Text>
