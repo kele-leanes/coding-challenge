@@ -2,7 +2,6 @@ import {GET_MOVIES, GET_MOVIES_BY_NAME} from '../types';
 
 const initialState = {
   movies: [],
-  moviesByName: [],
   loading: true,
 };
 
@@ -18,7 +17,7 @@ export default function (state = initialState, action) {
     case GET_MOVIES_BY_NAME:
       return {
         ...state,
-        moviesByName: action.payload,
+        movies: action.payload,
         loading: false,
       };
     default:

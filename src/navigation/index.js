@@ -3,17 +3,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import store from '../store/store';
 import {Provider} from 'react-redux';
-import {
-  Home,
-  Details,
-  SearchResults,
-  Onboarding,
-  Login,
-  Signup,
-} from '../screens';
+import {Home, Details, Onboarding, Login, Signup} from '../screens';
 import {Theme} from '../constants';
 import {View} from 'react-native';
-import {PresseableIcon} from './../components';
 
 const MoviesStack = createStackNavigator();
 
@@ -32,18 +24,10 @@ const screens = [
   {
     name: 'Home',
     component: Home,
-    options: ({navigation}) => ({
+    options: () => ({
       title: 'Movie Discover',
       gestureEnabled: false,
       headerLeft: null,
-      headerRight: () => (
-        <PresseableIcon
-          name={'search'}
-          size={20}
-          color={Theme.COLORS.WHITE}
-          onPress={() => navigation.navigate('Search')}
-        />
-      ),
       ...styles,
     }),
   },
@@ -54,16 +38,6 @@ const screens = [
       headerRight: () => <View />,
       headerBackTitleVisible: false,
       title: 'Details',
-      ...styles,
-    },
-  },
-  {
-    name: 'Search',
-    component: SearchResults,
-    options: {
-      headerRight: () => <View />,
-      headerBackTitleVisible: false,
-      title: 'Search Movie',
       ...styles,
     },
   },

@@ -1,36 +1,40 @@
 import React from 'react';
-import {TextInput, View, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Theme} from '../constants';
+import {SearchBar} from 'react-native-elements';
+import * as Animatable from 'react-native-animatable';
 
 const Input = ({onChangeText, value, placeholder}) => {
   return (
-    <View style={styles.container}>
-      <TextInput
+    <Animatable.View animation={'fadeInDown'} style={styles.container}>
+      <SearchBar
+        containerStyle={styles.containerStyle}
+        inputContainerStyle={styles.inputContainerStyle}
+        inputStyle={styles.input}
         placeholder={placeholder}
         onChangeText={(text) => onChangeText(text)}
         value={value}
-        style={styles.input}
       />
-    </View>
+    </Animatable.View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 55,
-    justifyContent: 'center',
-    paddingVertical: 5,
-    paddingHorizontal: 10,
     backgroundColor: Theme.COLORS.SECONDARY,
   },
-  input: {
+  containerStyle: {
     width: '100%',
-    height: 40,
-    backgroundColor: Theme.COLORS.WHITE,
-    borderRadius: 15,
-    paddingHorizontal: 10,
-    color: Theme.COLORS.PRIMARY,
+    backgroundColor: Theme.COLORS.SECONDARY,
+    borderBottomWidth: 0,
+  },
+  inputContainerStyle: {
+    height: 30,
+    backgroundColor: Theme.COLORS.PRIMARY,
+  },
+  input: {
+    backgroundColor: Theme.COLORS.PRIMARY,
   },
 });
 
