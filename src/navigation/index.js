@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import store from '../store/store';
 import {Provider} from 'react-redux';
-import {Home} from '../screens';
+import {Home, Onboarding, Login, Signup} from '../screens';
 
 const MoviesStack = createStackNavigator();
 
@@ -12,13 +12,29 @@ const screens = [
     name: 'Home',
     component: Home,
   },
+  {
+    name: 'Onboarding',
+    component: Onboarding,
+  },
+  {
+    name: 'Login',
+    component: Login,
+  },
+  {
+    name: 'Signup',
+    component: Signup,
+  },
 ];
 
 export default function Navigation() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <MoviesStack.Navigator>
+        <MoviesStack.Navigator
+          initialRouteName="Onboarding"
+          screenOptions={{
+            headerShown: false,
+          }}>
           {screens.map((screen) => (
             <MoviesStack.Screen
               name={screen.name}
