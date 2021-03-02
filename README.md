@@ -2,6 +2,22 @@
 
 Movie Discover App.
 
+## Pre - requisites 🚀
+
+Run NPM install
+
+```bash
+npm install
+```
+
+On macOS install cocoapods
+
+```bash
+sudo gem install cocoapods
+```
+
+Create a Developer Account on [The Movie DB](https://www.themoviedb.org/signup) and request an API KEY
+
 ## Installation 🔧
 
 Clone this [repo](https://github.com/kele-leanes/coding-challenge) in your computer.
@@ -10,19 +26,19 @@ Clone this [repo](https://github.com/kele-leanes/coding-challenge) in your compu
 git clone git@github.com:kele-leanes/coding-challenge.git
 ```
 
-Run NPM install
-
-```bash
-npm install
-```
-
-Run pod install in /ios folder
+Only on macOs run pod install in /ios folder
 
 ```bash
 pod install
 ```
 
-Run on IOS or Android
+On file src/constants/index.js put your generated API KEY
+
+```javascript
+export const API_KEY = 'INSERT YOUR API KEY HERE'
+```
+
+In codingChallenge folder Run on IOS or Android
 
 ```bash
 react-native run-ios
