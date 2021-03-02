@@ -6,6 +6,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
 
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import {addUserAction} from '../../../store/actions/usersActions';
 
@@ -22,8 +23,7 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPss, setConfirmPss] = useState('');
   const [error, setError] = useState(null);
-  const [showPassword, setShowPassword] = useState(true);
-  const [repeatPass, setRepeatPass] = useState('');
+
 
   //TODO: move validation to redux before the navigate
   // const validation = () => {
@@ -53,11 +53,11 @@ const RegisterForm = () => {
   //   }
   // };
 
+  //navigation.navigate('Home')
+  const errorMessage = useSelector((state) => state.error.errorMessage);
   return (
     <Form
-      onSubmit={() =>
-        dispatch(addUserAction(email, password, navigation.navigate('Home')))
-      }
+      onSubmit={() => dispatch(addUserAction(email, password))}
       render={({handleSubmit}) => (
         <>
           <View style={styles.header}>
@@ -105,13 +105,6 @@ const RegisterForm = () => {
                 style={styles.textInput}
                 onChange={(e) => setPassword(e.nativeEvent.text)}
                 value={password}
-                secureTextEntry={showPassword}
-              />
-              <Feather
-                name={showPassword ? 'eye-off' : 'eye'}
-                color="#222831"
-                size={20}
-                onPress={() => setShowPassword(!showPassword)}
               />
             </View>
             <Text style={[styles.text_footer, styles.pss]}>
@@ -127,16 +120,8 @@ const RegisterForm = () => {
                 style={styles.textInput}
                 onChange={(e) => setConfirmPss(e.nativeEvent.text)}
                 value={confirmPss}
-                secureTextEntry={repeatPass}
-              />
-              <Feather
-                name={repeatPass ? 'eye-off' : 'eye'}
-                color="#222831"
-                size={20}
-                onPress={() => setRepeatPass(!repeatPass)}
               />
             </View>
-
             <View style={styles.button}>
               <TouchableOpacity
                 onPress={handleSubmit}
@@ -154,11 +139,9 @@ const RegisterForm = () => {
               />
               <Text style={styles.backBtn}>Back</Text>
             </View>
-            {error && (
-              <View style={styles.error}>
-                <Text style={styles.textError}>{error}</Text>
-              </View>
-            )}
+            <View style={styles.error}>
+              <Text style={styles.textError}>{errorMessage}</Text>
+            </View>
           </Animatable.View>
         </>
       )}
