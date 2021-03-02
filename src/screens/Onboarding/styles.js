@@ -12,12 +12,13 @@ export const styles = StyleSheet.create({
     backgroundColor: Theme.COLORS.SECONDARY,
   },
   header: {
-    flex: 2,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   footer: {
     flex: 1,
+    justifyContent: 'space-between',
     backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,

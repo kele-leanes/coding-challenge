@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
@@ -23,7 +23,7 @@ const RegisterForm = () => {
   const [confirmPss, setConfirmPss] = useState('');
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(true);
-  const [repeatPass, setRepeatPass] = useState('');
+  const [repeatPass, setRepeatPass] = useState(true);
 
   //TODO: move validation to redux before the navigate
   // const validation = () => {
@@ -59,7 +59,7 @@ const RegisterForm = () => {
         dispatch(addUserAction(email, password, navigation.navigate('Home')))
       }
       render={({handleSubmit}) => (
-        <>
+        <ScrollView>
           <View style={styles.header}>
             <Text style={styles.text_header}>
               Take few moment to register before to see a movie
@@ -160,7 +160,7 @@ const RegisterForm = () => {
               </View>
             )}
           </Animatable.View>
-        </>
+        </ScrollView>
       )}
     />
   );

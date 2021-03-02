@@ -4,12 +4,10 @@ import {Theme} from '../../../../constants';
 export const styles = StyleSheet.create({
   header: {
     flex: 1,
-    justifyContent: 'flex-end',
     paddingHorizontal: 20,
-    paddingBottom: 50,
+    justifyContent: 'center',
   },
   footer: {
-    flex: 1,
     backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,

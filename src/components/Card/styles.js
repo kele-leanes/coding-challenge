@@ -3,43 +3,36 @@ import {Theme} from '../../constants';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: Theme.COLORS.PRIMARY,
-    flex: 1,
-    borderWidth: 1,
-    borderColor: Theme.COLORS.PRIMARY,
+    backgroundColor: Theme.COLORS.WHITE,
     padding: 10,
     marginVertical: 5,
-    marginHorizontal: 10,
+    borderRadius: 20,
+    flexDirection: 'row',
+    width: '100%',
   },
   title: {
-    color: Theme.COLORS.WHITE,
+    color: Theme.COLORS.SECONDARY,
     textTransform: 'uppercase',
     fontWeight: 'bold',
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 10,
-    position: 'absolute',
-    bottom: 10,
-    left: 5,
-  },
-  description: {
-    color: Theme.COLORS.WHITE,
-    fontStyle: 'italic',
   },
   text: {
-    color: Theme.COLORS.WHITE,
+    color: Theme.COLORS.SECONDARY,
   },
   image: {
-    width: undefined,
-    height: 100,
+    width: 100,
+    height: 140,
+    borderRadius: 10,
   },
   textContainer: {
     marginVertical: 10,
   },
   footer: {
-    flexDirection: 'row',
+    width: '60%',
+    marginLeft: 10,
     justifyContent: 'space-between',
-    alignItems: 'center',
     marginVertical: 10,
+  },
+  ratingWrapper: {
+    flexDirection: 'row',
   },
 });

@@ -4,9 +4,9 @@ import {Theme} from '../../../constants';
 export const styles = StyleSheet.create({
   header: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     paddingHorizontal: 20,
-    paddingBottom: 50,
+    paddingVertical: 20,
   },
   footer: {
     flex: 3,

@@ -30,10 +30,12 @@ const Onboarding = () => {
         />
       </View>
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
-        <Text style={styles.title}>Welcome!</Text>
-        <Text style={styles.text}>
-          Log in with your account or create a new one.
-        </Text>
+        <View>
+          <Text style={styles.title}>Welcome!</Text>
+          <Text style={styles.text}>
+            Log in with your account or create a new one.
+          </Text>
+        </View>
         <View style={styles.button}>
           <TouchableOpacity
             onPress={() => navigation.navigate('Login')}
