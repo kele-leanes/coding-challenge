@@ -11,11 +11,12 @@ const initialState = {
   name: '',
   error: '',
 };
+import errorReducer from '../reducers/errorReducer';
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case REGISTER_FAILURE: {
-      return {...initialState};
+      return {...errorReducer(state, action)};
     }
     case REGISTER_SUCCESS: {
       return {

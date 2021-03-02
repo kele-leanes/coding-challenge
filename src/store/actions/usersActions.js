@@ -19,10 +19,7 @@ export const addUserAction = (email, password) => async (dispatch) => {
     });
   } catch (err) {
     console.log(err);
-    dispatch({
-      type: REGISTER_FAILURE,
-      payload: err,
-    });
+    dispatch(errorAction('REGISTER_FAILURE', err));
   }
 };
 
@@ -43,4 +40,12 @@ export const loginUserAction = (email, password) => async (dispatch) => {
       type: LOGIN_FAILURE,
     });
   }
+};
+
+export const errorAction = (errorType, error) => async (dispatch) => {
+  return {
+    type: errorType,
+    error: true,
+    payload: error,
+  };
 };
