@@ -1,6 +1,9 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
 import {Home, Details, Onboarding, Login, Signup} from '../screens';
 import {Theme} from '../constants';
 import {View} from 'react-native';
@@ -25,7 +28,7 @@ const screens = [
     options: () => ({
       title: 'Movie Discover',
       gestureEnabled: false,
-      headerLeft: null,
+      headerLeft: () => <View />,
       ...styles,
     }),
   },
@@ -65,7 +68,11 @@ const screens = [
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <MoviesStack.Navigator initialRouteName="Onboarding">
+      <MoviesStack.Navigator
+        initialRouteName="Onboarding"
+        screenOptions={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}>
         {screens.map((screen) => (
           <MoviesStack.Screen
             key={screen.name}

@@ -7,7 +7,10 @@ import {styles} from './styles';
 
 const Input = ({onChangeText, value, placeholder}) => {
   return (
-    <Animatable.View animation={'fadeInDown'} style={styles.container}>
+    <Animatable.View
+      animation={'fadeInDown'}
+      duration={500}
+      style={styles.container}>
       <SearchBar
         containerStyle={styles.containerStyle}
         inputContainerStyle={styles.inputContainerStyle}

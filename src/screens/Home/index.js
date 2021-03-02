@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   Text,
   View,
+  BackHandler,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -24,6 +25,13 @@ const Home = ({navigation}) => {
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [value, onChangeText] = useState('');
   const [filter, onChangeFilter] = useState(null);
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => true);
+
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', () => true);
+  }, []);
 
   const _onChangefilter = (val) => {
     onChangeFilter(val === filter ? null : val);
@@ -65,7 +73,7 @@ const Home = ({navigation}) => {
     navigation.setOptions({
       headerRight: () => (
         <PresseableIcon
-          name={'search'}
+          name={!showSearchBar ? 'search' : 'close'}
           size={20}
           color={Theme.COLORS.WHITE}
           onPress={() => setShowSearchBar(!showSearchBar)}
