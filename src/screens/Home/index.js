@@ -79,11 +79,13 @@ const Home = ({navigation}) => {
           onPress={() => setShowSearchBar(!showSearchBar)}
         />
       ),
+      header: () => <Input />,
     });
   }, [navigation, showSearchBar]);
 
   return (
     <SafeAreaView style={styles.container}>
+      <Filter value={filter} onValueChange={_onChangefilter} />
       {showSearchBar && (
         <Input
           placeholder={'Type a title movie...'}
@@ -105,9 +107,6 @@ const Home = ({navigation}) => {
       ) : (
         <ActivityIndicator size={20} color={Theme.COLORS.WHITE} />
       )}
-      <View style={styles.containerFilter}>
-        <Filter value={filter} onValueChange={_onChangefilter} />
-      </View>
     </SafeAreaView>
   );
 };

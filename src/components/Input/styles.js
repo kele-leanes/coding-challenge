@@ -5,8 +5,6 @@ export const styles = StyleSheet.create({
   container: {
     width: '100%',
     backgroundColor: Theme.COLORS.SECONDARY,
-    position: 'absolute',
-    zIndex: 999,
   },
   containerStyle: {
     width: '100%',
