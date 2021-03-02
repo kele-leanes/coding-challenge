@@ -10,7 +10,7 @@ Run NPM install
 npm install
 ```
 
-On macOS install cocoapods
+On macOS install cocoapods < 1.10.1
 
 ```bash
 sudo gem install cocoapods
