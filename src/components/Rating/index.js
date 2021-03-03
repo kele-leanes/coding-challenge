@@ -10,7 +10,7 @@ const Rating = ({votes, onPress}) => {
     const elemArray = [];
     const RatingToFive = raitng;
     for (let i = 0; i < 5; i++) {
-      if (i <= RatingToFive) {
+      if (i <= RatingToFive && RatingToFive !== null) {
         elemArray.push(
           <TouchableOpacity
             activeOpacity={onPress ? 0.2 : 1}

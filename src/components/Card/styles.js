@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     marginVertical: 10,
   },
   footer: {
-    width: '60%',
+    width: '65%',
     marginLeft: 10,
     justifyContent: 'space-between',
     marginVertical: 10,

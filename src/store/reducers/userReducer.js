@@ -3,6 +3,7 @@ import {
   REGISTER_SUCCESS,
   LOGIN_FAILURE,
   LOGIN_SUCCES,
+  SET_ERROR_FALSE,
 } from '../types';
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   password: '',
   name: '',
   errorMessage: null,
+  hasError: false,
 };
 
 export default function (state = initialState, action) {
@@ -29,7 +31,15 @@ export default function (state = initialState, action) {
     case LOGIN_FAILURE: {
       return {
         initialState,
+        hasError: true,
         errorMessage: action.payload,
+      };
+    }
+    case SET_ERROR_FALSE: {
+      return {
+        ...state,
+        hasError: false,
+        errorMessage: null,
       };
     }
     case LOGIN_SUCCES: {

@@ -7,3 +7,4 @@ export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 export const LOGIN = 'LOGIN';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCES';
+export const SET_ERROR_FALSE = 'SET_ERROR_FALSE';
