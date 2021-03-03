@@ -1,5 +1,5 @@
 import React, {useState, useCallback, useEffect} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Alert} from 'react-native';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
@@ -7,7 +7,10 @@ import * as Animatable from 'react-native-animatable';
 
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import {loginUserAction} from '../../../../store/actions/usersActions';
+import {
+  loginUserAction,
+  setErrorFalse,
+} from '../../../../store/actions/usersActions';
 
 import {Form, Field} from 'react-final-form';
 
@@ -17,6 +20,7 @@ const LoginForm = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const errorMessage = useSelector((store) => store.user.errorMessage);
+  const hasError = useSelector((store) => store.user.hasError);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,6 +34,17 @@ const LoginForm = () => {
   //   }
   // };
   //navigation.navigate('Home')
+
+  useEffect(() => {
+    if (hasError) {
+      Alert.alert(
+        'Error',
+        errorMessage,
+        [{text: 'OK', onPress: () => dispatch(setErrorFalse())}],
+        {cancelable: false},
+      );
+    }
+  }, [dispatch, errorMessage, hasError]);
 
   return (
     <Form

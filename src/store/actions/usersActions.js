@@ -5,6 +5,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN,
   REGISTER,
+  SET_ERROR_FALSE,
 } from '../types';
 import services from '../../services';
 
@@ -54,7 +55,7 @@ export const loginUserAction = (email, password) => async (dispatch) => {
     ) {
       dispatch({
         type: LOGIN_FAILURE,
-        errorMessage: 'Please check your data',
+        payload: 'Please check your data',
       });
     }
   }
@@ -66,4 +67,10 @@ export const errorAction = (errorType, error) => async (dispatch) => {
     error: true,
     payload: error,
   };
+};
+
+export const setErrorFalse = () => (dispatch) => {
+  dispatch({
+    type: SET_ERROR_FALSE,
+  });
 };
