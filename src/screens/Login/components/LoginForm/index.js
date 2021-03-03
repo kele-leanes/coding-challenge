@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -6,7 +6,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
 
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {loginUserAction} from '../../../../store/actions/usersActions';
 
 import {Form, Field} from 'react-final-form';
@@ -16,29 +16,35 @@ import {styles} from './styles';
 const LoginForm = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const errorMessage = useSelector((store) => store.user.errorMessage);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(true);
 
-  //TODO: move the validation to redux before the navigate
-  // const validation = () => {
-  //   if (!email || !password) {
-  //     setError('All fields are required');
-  //   }
-  // };
-  //navigation.navigate('Home')
+  const validation = () => {
+    if (!email || !password) {
+      setError('All fields are required!!!!');
+    } else {
+      loginUser();
+      setError('');
+    }
+  };
+
+  const loginUser = () => {
+    dispatch(loginUserAction(email, password));
+    navigation.navigate('Home');
+  };
 
   return (
     <Form
-      onSubmit={() => dispatch(loginUserAction(email, password))}
+      onSubmit={() => validation()}
       render={({handleSubmit}) => (
         <>
           <View style={styles.header}>
             <Text style={styles.text_header}>Are you ready ?? </Text>
           </View>
+          {error && <Text style={styles.textError}>{error}</Text>}
           <Animatable.View animation="fadeInUpBig" style={styles.footer}>
             <Text style={styles.text_footer}>E-Mail</Text>
             <View style={styles.action}>
@@ -92,11 +98,6 @@ const LoginForm = () => {
                 <Text style={[styles.textSignIn, styles.textBtn]}>Sign up</Text>
               </TouchableOpacity>
             </View>
-            {errorMessage && (
-              <View style={styles.error}>
-                <Text style={styles.textError}>{errorMessage}</Text>
-              </View>
-            )}
           </Animatable.View>
         </>
       )}

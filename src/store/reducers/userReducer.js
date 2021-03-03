@@ -11,12 +11,14 @@ const initialState = {
   name: '',
   errorMessage: null,
 };
-import errorReducer from '../reducers/errorReducer';
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case REGISTER_FAILURE: {
-      return {...errorReducer(state, action)};
+      return {
+        initialState,
+        errorMessage: action.payload,
+      };
     }
     case REGISTER_SUCCESS: {
       return {

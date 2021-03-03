@@ -2,19 +2,21 @@ import {StyleSheet} from 'react-native';
 import {Theme} from '../../../constants';
 
 export const styles = StyleSheet.create({
-  header: {
+  container: {
     flex: 1,
     justifyContent: 'center',
+  },
+  header: {
     paddingHorizontal: 20,
-    paddingVertical: 20,
+    alignItems: 'center',
   },
   footer: {
-    flex: 3,
     backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
+    width: '95%',
   },
   text_header: {
     color: '#fff',
@@ -43,7 +45,7 @@ export const styles = StyleSheet.create({
     marginTop: 50,
   },
   signIn: {
-    width: '100%',
+    width: '95%',
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
@@ -52,9 +54,6 @@ export const styles = StyleSheet.create({
   textSignIn: {
     fontSize: 15,
     color: Theme.COLORS.PRIMARY,
-  },
-  pss: {
-    marginTop: 35,
   },
   btn: {
     backgroundColor: Theme.COLORS.BACKGROUND,
@@ -66,13 +65,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textError: {
-    backgroundColor: '#ff7675',
-    width: '100%',
+    width: '80%',
     height: 50,
-    color: '#fff',
+    color: Theme.COLORS.WHITE,
     textAlign: 'center',
     padding: 15,
-    borderWidth: 1,
+    fontWeight: 'bold',
+    fontSize: 20,
+    backgroundColor: Theme.COLORS.TERTIARY,
+    marginBottom: 20,
   },
   backBtn: {
     color: '#c2c2c2',

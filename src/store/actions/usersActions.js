@@ -9,6 +9,9 @@ import {
 import services from '../../services';
 
 export const addUserAction = (email, password) => async (dispatch) => {
+  dispatch({
+    type: REGISTER,
+  });
   try {
     const addUser = await services.auth.createUserWithEmailAndPassword(
       email,
@@ -19,9 +22,17 @@ export const addUserAction = (email, password) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: addUser,
     });
+    console.log('REGISTER OKOKOK', addUser);
   } catch (err) {
     console.log(err);
-    dispatch(errorAction('REGISTER_FAILURE', err));
+    if (
+      ([Error === 'The email address is already in use by another account'],
+      [Error === 'The email address is badly formatted'])
+    )
+      dispatch({
+        type: REGISTER_FAILURE,
+        errorMessage: console.log('Error message:', err),
+      });
   }
 };
 
@@ -58,12 +69,4 @@ export const loginUserAction = (email, password) => async (dispatch) => {
       });
     }
   }
-};
-
-export const errorAction = (errorType, error) => async (dispatch) => {
-  return {
-    type: errorType,
-    error: true,
-    payload: error,
-  };
 };
