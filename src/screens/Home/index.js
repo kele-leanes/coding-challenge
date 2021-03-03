@@ -11,7 +11,6 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import Card from '../../components/Card';
 import Input from '../../components/Input';
-import PresseableIcon from '../../components/PresseableIcon';
 import Filter from '../../components/Filter';
 import {Theme} from '../../constants';
 import {getMovies, getMoviesByName} from '../../store/actions/moviesActions';
@@ -23,7 +22,6 @@ const Home = ({navigation}) => {
   const dispatch = useDispatch();
   const movies = useSelector((store) => store.movies.movies?.results);
   const isLoading = useSelector((store) => store.movies.loading);
-  const [showSearchBar, setShowSearchBar] = useState(false);
   const [value, onChangeText] = useState('');
   const [filter, onChangeFilter] = useState(null);
 
@@ -73,14 +71,16 @@ const Home = ({navigation}) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       header: () => (
-        <Header
+        <Input
           placeholder={'Type a title movie...'}
           value={value}
           onChangeText={onChangeText}
         />
       ),
     });
-  }, [navigation, showSearchBar, value]);
+  }, [navigation, value]);
+
+  console.log(value, 'HOME');
 
   return (
     <SafeAreaView style={styles.container}>

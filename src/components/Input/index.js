@@ -3,14 +3,21 @@ import React, {useState} from 'react';
 import {SearchBar} from 'react-native-elements';
 import PresseableIcon from './../PresseableIcon';
 import * as Animatable from 'react-native-animatable';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {styles} from './styles';
 import {Text, View} from 'react-native';
 
 const Input = ({onChangeText, value, placeholder}) => {
   const [showInput, setShowIput] = useState(false);
+  const insets = useSafeAreaInsets();
+  console.log(value, 'INPUT');
   return (
-    <View style={styles.container}>
+    <View
+      style={{
+        ...styles.container,
+        paddingTop: insets.top,
+      }}>
       {showInput ? (
         <Animatable.View
           style={styles.animatableView}
