@@ -17,6 +17,7 @@ import {Theme} from '../../constants';
 import {getMovies, getMoviesByName} from '../../store/actions/moviesActions';
 
 import {styles} from './styles';
+import Header from '../../components/Header';
 
 const Home = ({navigation}) => {
   const dispatch = useDispatch();
@@ -71,28 +72,19 @@ const Home = ({navigation}) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: () => (
-        <PresseableIcon
-          name={!showSearchBar ? 'search' : 'close'}
-          size={20}
-          color={Theme.COLORS.WHITE}
-          onPress={() => setShowSearchBar(!showSearchBar)}
-        />
-      ),
-      header: () => <Input />,
-    });
-  }, [navigation, showSearchBar]);
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <Filter value={filter} onValueChange={_onChangefilter} />
-      {showSearchBar && (
-        <Input
+      header: () => (
+        <Header
           placeholder={'Type a title movie...'}
           value={value}
           onChangeText={onChangeText}
         />
-      )}
+      ),
+    });
+  }, [navigation, showSearchBar, value]);
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Filter value={filter} onValueChange={_onChangefilter} />
       {!isLoading ? (
         moviestoShow.length > 0 ? (
           <FlatList
