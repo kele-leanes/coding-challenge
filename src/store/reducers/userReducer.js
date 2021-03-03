@@ -9,7 +9,7 @@ const initialState = {
   email: '',
   password: '',
   name: '',
-  error: '',
+  errorMessage: null,
 };
 import errorReducer from '../reducers/errorReducer';
 
@@ -25,7 +25,10 @@ export default function (state = initialState, action) {
       };
     }
     case LOGIN_FAILURE: {
-      return {initialState};
+      return {
+        initialState,
+        errorMessage: action.payload,
+      };
     }
     case LOGIN_SUCCES: {
       return {
