@@ -6,7 +6,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
 
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {loginUserAction} from '../../../../store/actions/usersActions';
 
 import {Form, Field} from 'react-final-form';
@@ -16,6 +16,7 @@ import {styles} from './styles';
 const LoginForm = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const errorMessage = useSelector((store) => store.user.errorMessage);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,12 +29,11 @@ const LoginForm = () => {
   //     setError('All fields are required');
   //   }
   // };
+  //navigation.navigate('Home')
 
   return (
     <Form
-      onSubmit={() =>
-        dispatch(loginUserAction(email, password, navigation.navigate('Home')))
-      }
+      onSubmit={() => dispatch(loginUserAction(email, password))}
       render={({handleSubmit}) => (
         <>
           <View style={styles.header}>
@@ -92,9 +92,9 @@ const LoginForm = () => {
                 <Text style={[styles.textSignIn, styles.textBtn]}>Sign up</Text>
               </TouchableOpacity>
             </View>
-            {error && (
+            {errorMessage && (
               <View style={styles.error}>
-                <Text style={styles.textError}>{error}</Text>
+                <Text style={styles.textError}>{errorMessage}</Text>
               </View>
             )}
           </Animatable.View>
