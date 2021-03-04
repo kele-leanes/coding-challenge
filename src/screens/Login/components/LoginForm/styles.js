@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   footer: {
-    flex: 7,
     backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -33,6 +32,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   textInput: {
+    flex: 1,
     paddingLeft: 10,
     color: '#05375a',
   },
@@ -75,18 +75,16 @@ export const styles = StyleSheet.create({
   },
   error: {
     justifyContent: 'center',
-
+    flex: 1,
     alignItems: 'center',
   },
   textError: {
-    width: '80%',
+    width: '100%',
     height: 50,
-    color: Theme.COLORS.WHITE,
+    color: 'pink',
     textAlign: 'center',
     padding: 15,
     fontWeight: 'bold',
     fontSize: 20,
-    backgroundColor: Theme.COLORS.TERTIARY,
-    marginBottom: 20,
   },
 });

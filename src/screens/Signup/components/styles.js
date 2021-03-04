@@ -2,21 +2,19 @@ import {StyleSheet} from 'react-native';
 import {Theme} from '../../../constants';
 
 export const styles = StyleSheet.create({
-  container: {
+  header: {
     flex: 1,
     justifyContent: 'center',
-  },
-  header: {
     paddingHorizontal: 20,
-    alignItems: 'center',
+    paddingVertical: 20,
   },
   footer: {
+    flex: 3,
     backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
-    width: '95%',
   },
   text_header: {
     color: '#fff',
@@ -45,7 +43,7 @@ export const styles = StyleSheet.create({
     marginTop: 50,
   },
   signIn: {
-    width: '95%',
+    width: '100%',
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
@@ -55,25 +53,22 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     color: Theme.COLORS.PRIMARY,
   },
+  pss: {
+    marginTop: 35,
+  },
   btn: {
     backgroundColor: Theme.COLORS.BACKGROUND,
     marginTop: 15,
   },
-  error: {
-    justifyContent: 'center',
-    flex: 1,
-    alignItems: 'center',
-  },
+
   textError: {
-    width: '80%',
+    width: '100%',
     height: 50,
-    color: Theme.COLORS.WHITE,
-    textAlign: 'center',
+    color: 'pink',
+
     padding: 15,
     fontWeight: 'bold',
     fontSize: 20,
-    backgroundColor: Theme.COLORS.TERTIARY,
-    marginBottom: 20,
   },
   backBtn: {
     color: '#c2c2c2',

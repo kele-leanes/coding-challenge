@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
@@ -73,6 +67,11 @@ const RegisterForm = () => {
               Take few moment to register before to see a movie
             </Text>
           </View>
+          {error && (
+            <View style={styles.error}>
+              <Text style={styles.textError}>{error}</Text>
+            </View>
+          )}
           <Animatable.View animation="fadeInUpBig" style={styles.footer}>
             <Text style={styles.text_footer}>Name</Text>
             <View style={styles.action}>
@@ -147,11 +146,6 @@ const RegisterForm = () => {
               />
               <Text style={styles.backBtn}>Back</Text>
             </View>
-            {error && (
-              <View style={styles.error}>
-                <Text style={styles.textError}>{error}</Text>
-              </View>
-            )}
           </Animatable.View>
         </>
       )}

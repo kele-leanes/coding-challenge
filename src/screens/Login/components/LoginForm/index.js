@@ -54,13 +54,15 @@ const LoginForm = () => {
 
   return (
     <Form
-      onSubmit={() => validation()}
+      onSubmit={validation}
       render={({handleSubmit}) => (
         <>
           <View style={styles.header}>
             <Text style={styles.text_header}>Are you ready ?? </Text>
           </View>
-          {error && <Text style={styles.textError}>{error}</Text>}
+          <Text style={styles.textError}>{error}</Text>
+          <Text style={styles.textError}>{errorMessage}</Text>
+
           <Animatable.View animation="fadeInUpBig" style={styles.footer}>
             <Text style={styles.text_footer}>E-Mail</Text>
             <View style={styles.action}>
