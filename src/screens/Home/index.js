@@ -4,19 +4,17 @@ import {
   FlatList,
   SafeAreaView,
   Text,
-  View,
   BackHandler,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import Card from '../../components/Card';
-import Input from '../../components/Input';
+import Header from '../../components/Header';
 import Filter from '../../components/Filter';
 import {Theme} from '../../constants';
 import {getMovies, getMoviesByName} from '../../store/actions/moviesActions';
 
 import {styles} from './styles';
-import Header from '../../components/Header';
 
 const Home = ({navigation}) => {
   const dispatch = useDispatch();
@@ -71,7 +69,7 @@ const Home = ({navigation}) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       header: () => (
-        <Input
+        <Header
           placeholder={'Type a title movie...'}
           value={value}
           onChangeText={onChangeText}
@@ -80,7 +78,6 @@ const Home = ({navigation}) => {
     });
   }, [navigation, value]);
 
-  console.log(value, 'HOME');
 
   return (
     <SafeAreaView style={styles.container}>
