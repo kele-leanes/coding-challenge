@@ -1,13 +1,16 @@
 import React, {useState, useCallback, useEffect} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Alert} from 'react-native';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
 
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
-import {loginUserAction} from '../../../../store/actions/usersActions';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  loginUserAction,
+  setErrorFalse,
+} from '../../../../store/actions/usersActions';
 
 import {Form, Field} from 'react-final-form';
 
@@ -16,29 +19,50 @@ import {styles} from './styles';
 const LoginForm = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const errorMessage = useSelector((store) => store.user.errorMessage);
+  const hasError = useSelector((store) => store.user.hasError);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(true);
 
-  //TODO: move the validation to redux before the navigate
-  // const validation = () => {
-  //   if (!email || !password) {
-  //     setError('All fields are required');
-  //   }
-  // };
+  const validation = () => {
+    if (!email || !password) {
+      setError('All fields are required!!!!');
+    } else {
+      loginUser();
+      setError('');
+    }
+  };
+
+  const loginUser = () => {
+    dispatch(loginUserAction(email, password));
+    navigation.navigate('Home');
+  };
+
+  useEffect(() => {
+    if (hasError) {
+      Alert.alert(
+        'Error',
+        errorMessage,
+        [{text: 'OK', onPress: () => dispatch(setErrorFalse())}],
+        {cancelable: false},
+      );
+    }
+  }, [dispatch, errorMessage, hasError]);
 
   return (
     <Form
-      onSubmit={() =>
-        dispatch(loginUserAction(email, password, navigation.navigate('Home')))
-      }
+      onSubmit={validation}
       render={({handleSubmit}) => (
         <>
           <View style={styles.header}>
             <Text style={styles.text_header}>Are you ready ?? </Text>
           </View>
+          <Text style={styles.textError}>{error}</Text>
+          <Text style={styles.textError}>{errorMessage}</Text>
+
           <Animatable.View animation="fadeInUpBig" style={styles.footer}>
             <Text style={styles.text_footer}>E-Mail</Text>
             <View style={styles.action}>
@@ -92,11 +116,6 @@ const LoginForm = () => {
                 <Text style={[styles.textSignIn, styles.textBtn]}>Sign up</Text>
               </TouchableOpacity>
             </View>
-            {error && (
-              <View style={styles.error}>
-                <Text style={styles.textError}>{error}</Text>
-              </View>
-            )}
           </Animatable.View>
         </>
       )}

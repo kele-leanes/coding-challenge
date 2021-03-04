@@ -3,20 +3,24 @@ import {
   REGISTER_SUCCESS,
   LOGIN_FAILURE,
   LOGIN_SUCCES,
+  SET_ERROR_FALSE,
 } from '../types';
 
 const initialState = {
   email: '',
   password: '',
   name: '',
-  error: '',
+  errorMessage: null,
+  hasError: false,
 };
-import errorReducer from '../reducers/errorReducer';
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case REGISTER_FAILURE: {
-      return {...errorReducer(state, action)};
+      return {
+        initialState,
+        errorMessage: action.payload,
+      };
     }
     case REGISTER_SUCCESS: {
       return {
@@ -25,7 +29,18 @@ export default function (state = initialState, action) {
       };
     }
     case LOGIN_FAILURE: {
-      return {initialState};
+      return {
+        initialState,
+        hasError: true,
+        errorMessage: action.payload,
+      };
+    }
+    case SET_ERROR_FALSE: {
+      return {
+        ...state,
+        hasError: false,
+        errorMessage: null,
+      };
     }
     case LOGIN_SUCCES: {
       return {

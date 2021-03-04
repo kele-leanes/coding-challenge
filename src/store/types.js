@@ -1,7 +1,10 @@
 export const GET_MOVIES = 'GET_MOVIES';
 export const MOVIES_ERROR = 'MOVIES_ERROR';
 export const GET_MOVIES_BY_NAME = 'GET_MOVIES_BY_NAME';
+export const REGISTER = 'REGISTER';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+export const LOGIN = 'LOGIN';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCES';
+export const SET_ERROR_FALSE = 'SET_ERROR_FALSE';

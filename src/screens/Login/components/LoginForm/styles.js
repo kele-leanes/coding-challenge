@@ -79,12 +79,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textError: {
-    backgroundColor: '#ff7675',
     width: '100%',
     height: 50,
-    color: '#fff',
+    color: 'pink',
     textAlign: 'center',
     padding: 15,
-    borderWidth: 1,
+    fontWeight: 'bold',
+    fontSize: 20,
   },
 });

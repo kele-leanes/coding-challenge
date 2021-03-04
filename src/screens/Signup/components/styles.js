@@ -60,19 +60,15 @@ export const styles = StyleSheet.create({
     backgroundColor: Theme.COLORS.BACKGROUND,
     marginTop: 15,
   },
-  error: {
-    justifyContent: 'center',
-    flex: 1,
-    alignItems: 'center',
-  },
+
   textError: {
-    backgroundColor: '#ff7675',
     width: '100%',
     height: 50,
-    color: '#fff',
-    textAlign: 'center',
+    color: 'pink',
+
     padding: 15,
-    borderWidth: 1,
+    fontWeight: 'bold',
+    fontSize: 20,
   },
   backBtn: {
     color: '#c2c2c2',

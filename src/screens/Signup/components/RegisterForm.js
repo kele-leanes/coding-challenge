@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
 
 import {useNavigation} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
+
 import {useDispatch} from 'react-redux';
 import {addUserAction} from '../../../store/actions/usersActions';
-
+import {validateEmail} from '../../../utils/validations';
 import {Form, Field} from 'react-final-form';
 
 import {styles} from './styles';
@@ -24,46 +24,54 @@ const RegisterForm = () => {
   const [confirmPss, setConfirmPss] = useState('');
   const [error, setError] = useState(null);
 
-  //TODO: move validation to redux before the navigate
-  // const validation = () => {
-  //   if (!name || !email || !password || !confirmPss) {
-  //     setError('All fields are required');
-  //     return;
-  //   }
-  //   if (!validateEmail(email)) {
-  //     setError('Enter a valid e-mail');
-  //     return;
-  //   }
-  //   if (password.length < 6) {
-  //     setError('The password must be greater than six digits');
-  //     return;
-  //   }
-  //   if (password !== confirmPss) {
-  //     setError('Passwords must be the same ');
-  //     return;
-  //   } else {
-  //     setError('Form Ok :-) !!');
-  //     setName('');
-  //     setEmail('');
-  //     setPassword('');
-  //     setConfirmPss('');
-  //     setError(null);
-  //     return;
-  //   }
-  // };
+  const validation = () => {
+    if (!name || !email || !password || !confirmPss) {
+      setError('All fields are required');
+      return;
+    }
+    if (!validateEmail(email)) {
+      setError('Enter a valid e-mail');
+      return;
+    }
+    if (password.length < 6) {
+      setError('The password must be greater than six digits');
+      return;
+    }
+    if (password !== confirmPss) {
+      setError('Passwords must be the same ');
+      return;
+    } else {
+      registerUser();
+      setError('Form Ok :-) !!');
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPss('');
+      setError(null);
+      return;
+    }
+  };
 
-  //navigation.navigate('Home')
-  const errorMessage = useSelector((state) => state.error.errorMessage);
+  const registerUser = () => {
+    dispatch(addUserAction(email, password));
+    navigation.navigate('Home');
+  };
+
   return (
     <Form
-      onSubmit={() => dispatch(addUserAction(email, password))}
+      onSubmit={validation}
       render={({handleSubmit}) => (
-        <ScrollView>
+        <>
           <View style={styles.header}>
             <Text style={styles.text_header}>
               Take few moment to register before to see a movie
             </Text>
           </View>
+          {error && (
+            <View style={styles.error}>
+              <Text style={styles.textError}>{error}</Text>
+            </View>
+          )}
           <Animatable.View animation="fadeInUpBig" style={styles.footer}>
             <Text style={styles.text_footer}>Name</Text>
             <View style={styles.action}>
@@ -138,11 +146,8 @@ const RegisterForm = () => {
               />
               <Text style={styles.backBtn}>Back</Text>
             </View>
-            <View style={styles.error}>
-              <Text style={styles.textError}>{errorMessage}</Text>
-            </View>
           </Animatable.View>
-        </ScrollView>
+        </>
       )}
     />
   );
