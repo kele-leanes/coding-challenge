@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   Text,
   BackHandler,
+  Alert,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -20,6 +21,8 @@ const Home = ({navigation}) => {
   const dispatch = useDispatch();
   const movies = useSelector((store) => store.movies.movies?.results);
   const isLoading = useSelector((store) => store.movies.loading);
+  const hasError = useSelector((store) => store.movies.hasError);
+  const errMsg = useSelector((store) => store.movies.errorMessage);
   const [value, onChangeText] = useState('');
   const [filter, onChangeFilter] = useState(null);
 
@@ -29,6 +32,17 @@ const Home = ({navigation}) => {
     return () =>
       BackHandler.removeEventListener('hardwareBackPress', () => true);
   }, []);
+
+  useEffect(() => {
+    if (hasError) {
+      Alert.alert(
+        'Error',
+        errMsg,
+        [{text: 'Try Again', onPress: () => dispatch(getMovies())}],
+        {cancelable: false},
+      );
+    }
+  }, [hasError, errMsg]);
 
   const _onChangefilter = (val) => {
     onChangeFilter(val === filter ? null : val);
@@ -77,7 +91,6 @@ const Home = ({navigation}) => {
       ),
     });
   }, [navigation, value]);
-
 
   return (
     <SafeAreaView style={styles.container}>

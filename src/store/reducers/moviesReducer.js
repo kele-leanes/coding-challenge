@@ -1,8 +1,10 @@
-import {GET_MOVIES, GET_MOVIES_BY_NAME} from '../types';
+import {GET_MOVIES, GET_MOVIES_BY_NAME, MOVIES_ERROR} from '../types';
 
 const initialState = {
   movies: [],
   loading: true,
+  hasError: false,
+  errorMessage: null,
 };
 
 export default function (state = initialState, action) {
@@ -19,6 +21,12 @@ export default function (state = initialState, action) {
         ...state,
         movies: action.payload,
         loading: false,
+      };
+    case MOVIES_ERROR:
+      return {
+        ...state,
+        hasError: true,
+        errorMessage: action.payload,
       };
     default:
       return state;
